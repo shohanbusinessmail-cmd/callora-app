@@ -98,8 +98,8 @@ object OperatorCapabilityRegistry {
             displayName = "Grameenphone",
             mccMnc = listOf("47001"),
             conditions = mapOf(
-                ForwardingCondition.CFNRc to ConditionCapability(
-                    ForwardingCondition.CFNRc, CapabilityStatus.SUPPORTED_OFFICIAL,
+                ForwardingCondition.CFNRC to ConditionCapability(
+                    ForwardingCondition.CFNRC, CapabilityStatus.SUPPORTED_OFFICIAL,
                     "Official GP roaming documentation lists **62* registration and ##62# erasure.",
                 ),
                 ForwardingCondition.CFU to ConditionCapability(

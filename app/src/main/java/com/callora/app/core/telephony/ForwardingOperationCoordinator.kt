@@ -79,7 +79,7 @@ class ForwardingOperationCoordinator(
             // Privileged build path; current build still reports unavailable honestly.
             val outcome = officialApiBackend.evaluate(capability)
             recordUnavailable(operation, outcome)
-            return OperationRequestResult.Rejected((outcome as BackendOutcome.Unavailable).reason, outcome.detail)
+            return OperationRequestResult.Rejected(outcome.reason, outcome.detail)
         }
 
         return if (mmiIntentBackend.isAvailable(capability)) {
@@ -120,7 +120,7 @@ class ForwardingOperationCoordinator(
         operationRepository.update(updated)
         val newState = when (op.action) {
             OperationAction.ACTIVATE -> ForwardingState.ACTIVE_UNVERIFIED
-            OperationAction.DEACTIVATION -> ForwardingState.PENDING_DEACTIVATION
+            OperationAction.DEACTIVATE -> ForwardingState.PENDING_DEACTIVATION
             OperationAction.QUERY -> ForwardingState.UNKNOWN
         }
         if (op.action != OperationAction.QUERY) {
@@ -174,7 +174,7 @@ class ForwardingOperationCoordinator(
         if (carrierAccepted) {
             val state = when (op.action) {
                 OperationAction.ACTIVATE -> ForwardingState.ACTIVE_UNVERIFIED
-                OperationAction.DEACTIVATION -> ForwardingState.INACTIVE
+                OperationAction.DEACTIVATE -> ForwardingState.INACTIVE
                 OperationAction.QUERY -> ForwardingState.UNKNOWN
             }
             observedStatusRepository.save(

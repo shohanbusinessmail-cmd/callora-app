@@ -116,27 +116,31 @@ class SimsViewModel(app: CalloraApplication) : CalloraViewModel(app) {
 
     fun saveDestination(subscriptionId: Int, rawInput: String, onSaved: () -> Unit) {
         viewModelScope.launch {
-            val validation = container.phoneNumberNormalizer.validate(rawInput)
-            if (validation is DestinationValidation.Invalid) {
-                _messages.send(SimsMessage.InvalidDestination(validation.reason))
-                return@launch
+            when (val validation = container.phoneNumberNormalizer.validate(rawInput)) {
+                is DestinationValidation.Invalid -> {
+                    _messages.send(SimsMessage.InvalidDestination(validation.reason))
+                    return@launch
+                }
+                is DestinationValidation.Valid -> {
+                    val now = System.currentTimeMillis()
+                    val destinationId = container.destinationRepository.save(
+                        ForwardingDestination(
+                            e164 = validation.e164,
+                            label = validation.formatted,
+                            rawInput = rawInput,
+                            createdAtEpochMs = now,
+                        ),
+                    )
+                    val existing = container.subscriptionConfigRepository.get(subscriptionId)
+                    val snapshot = subscriptions.value.firstOrNull { it.subscriptionId == subscriptionId }
+                    container.subscriptionConfigRepository.upsert(
+                        (existing ?: defaultConfig(subscriptionId, snapshot))
+                            .copy(destinationId = destinationId),
+                    )
+                    dialogInternal.value = null
+                    onSaved()
+                }
             }
-            val now = System.currentTimeMillis()
-            val destinationId = container.destinationRepository.save(
-                ForwardingDestination(
-                    e164 = validation.e164,
-                    label = validation.formatted,
-                    rawInput = rawInput,
-                    createdAtEpochMs = now,
-                ),
-            )
-            val existing = container.subscriptionConfigRepository.get(subscriptionId)
-            val snapshot = subscriptions.value.firstOrNull { it.subscriptionId == subscriptionId }
-            container.subscriptionConfigRepository.upsert(
-                (existing ?: defaultConfig(subscriptionId, snapshot)).copy(destinationId = destinationId),
-            )
-            dialogInternal.value = null
-            onSaved()
         }
     }
 

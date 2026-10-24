@@ -49,6 +49,7 @@ class SubscriptionScanner(private val context: Context) {
             val subTelephony = telephonyManagerFor(info.subscriptionId)
             val mccMnc = runCatching { subTelephony?.simOperator }.orNull()
             val operator = OperatorId.fromMccMnc(mccMnc)
+            val simState = mapSimState(runCatching { subTelephony?.simState }.getOrNull())
             SubscriptionSnapshot(
                 subscriptionId = info.subscriptionId,
                 displayName = info.displayName?.toString().orEmpty(),
@@ -60,8 +61,9 @@ class SubscriptionScanner(private val context: Context) {
                 },
                 mccMnc = mccMnc?.takeIf { it.length >= 5 },
                 slotIndex = info.simSlotIndex,
-                simState = mapSimState(runCatching { subTelephony?.simState }.getOrNull()),
-                isActive = isSubscriptionActive(info),
+                simState = simState,
+                // Only the observable SIM state is used; hidden status APIs are avoided.
+                isActive = simState == SimState.READY,
                 phoneNumberAvailable = hasNumber(info),
             )
         }.sortedBy { it.slotIndex }
@@ -74,17 +76,6 @@ class SubscriptionScanner(private val context: Context) {
         return runCatching { base.createForSubscriptionId(subscriptionId) }.getOrNull()
     }
 
-    private fun isSubscriptionActive(info: SubscriptionInfo): Boolean =
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            // getSubscriptionStatus is hidden on some levels; treat READY as fallback.
-            runCatching {
-                val m = info.javaClass.getMethod("getSubscriptionStatus")
-                (m.invoke(info) as? Int) == SubscriptionManager.ACTIVE
-            }.getOrDefault(true)
-        } else {
-            true
-        }
-
     private fun hasNumber(info: SubscriptionInfo): Boolean =
         runCatching { !info.number.isNullOrBlank() }.getOrDefault(false)
 
@@ -95,7 +86,8 @@ class SubscriptionScanner(private val context: Context) {
         TelephonyManager.SIM_STATE_PUK_REQUIRED -> SimState.PUK_REQUIRED
         TelephonyManager.SIM_STATE_NETWORK_LOCKED -> SimState.NETWORK_LOCKED
         TelephonyManager.SIM_STATE_READY -> SimState.READY
-        TelephonyManager.SIM_STATE_DISABLED -> SimState.DISABLED
+        // SIM_STATE_DISABLED is not part of the public SDK surface; OEM-disabled
+        // SIMs fall through to the honest NOT_READY bucket.
         else -> SimState.NOT_READY
     }
 

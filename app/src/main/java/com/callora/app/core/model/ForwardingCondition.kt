@@ -23,7 +23,7 @@ enum class ForwardingCondition(val gsmServiceCode: String) {
     companion object {
         /** Conditions offered by Callora, ordered for stable UI presentation. */
         val DISPLAY_ORDER: List<ForwardingCondition> =
-            listOf(CFNRc, CFU, CFB, CFNRY)
+            listOf(ForwardingCondition.CFNRC, ForwardingCondition.CFU, ForwardingCondition.CFB, ForwardingCondition.CFNRY)
     }
 }
 

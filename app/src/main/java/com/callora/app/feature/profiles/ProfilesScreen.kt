@@ -89,8 +89,11 @@ fun ProfilesScreen(
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
+                        val conditionLabels = buildList {
+                            profile.enabledConditions.forEach { add(LabelHelpers.conditionLabel(it)) }
+                        }.joinToString()
                         Text(
-                            profile.enabledConditions.joinToString { LabelHelpers.conditionLabel(it) },
+                            conditionLabels,
                             style = MaterialTheme.typography.bodyMedium,
                         )
                         if (uiState.defaultProfileId == profile.id) {

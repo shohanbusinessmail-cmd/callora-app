@@ -56,7 +56,7 @@ class OfficialApiBackend : CallForwardingBackend {
     override fun isAvailable(capability: DeviceTelephonyCapability): Boolean =
         capability.officialApiAvailable
 
-    fun evaluate(capability: DeviceTelephonyCapability): BackendOutcome =
+    fun evaluate(capability: DeviceTelephonyCapability): BackendOutcome.Unavailable =
         if (capability.officialApiAvailable) {
             // Privileged builds would invoke TelephonyManager.setCallForwarding here.
             BackendOutcome.Unavailable(

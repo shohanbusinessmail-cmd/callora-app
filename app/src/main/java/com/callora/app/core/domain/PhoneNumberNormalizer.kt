@@ -25,8 +25,15 @@ class PhoneNumberNormalizer(
         } catch (e: NumberParseException) {
             return mapParseError(e)
         }
-        if (!util.isPossibleNumber(parsed)) {
-            return DestinationValidation.Invalid(DestinationValidation.InvalidReason.TOO_SHORT)
+        when (util.isPossibleNumberWithReason(parsed)) {
+            PhoneNumberUtil.ValidationResult.TOO_LONG ->
+                return DestinationValidation.Invalid(DestinationValidation.InvalidReason.TOO_LONG)
+            PhoneNumberUtil.ValidationResult.TOO_SHORT ->
+                return DestinationValidation.Invalid(DestinationValidation.InvalidReason.TOO_SHORT)
+            PhoneNumberUtil.ValidationResult.INVALID_LENGTH ->
+                return DestinationValidation.Invalid(DestinationValidation.InvalidReason.NOT_A_NUMBER)
+            PhoneNumberUtil.ValidationResult.IS_POSSIBLE,
+            PhoneNumberUtil.ValidationResult.IS_POSSIBLE_LOCAL_ONLY -> Unit
         }
         if (!util.isValidNumber(parsed)) {
             return DestinationValidation.Invalid(DestinationValidation.InvalidReason.NOT_A_NUMBER)
@@ -54,8 +61,6 @@ class PhoneNumberNormalizer(
         when (e.errorType) {
             NumberParseException.ErrorType.TOO_SHORT_NSN ->
                 DestinationValidation.Invalid(DestinationValidation.InvalidReason.TOO_SHORT)
-            NumberParseException.ErrorType.TOO_LONG_NSN ->
-                DestinationValidation.Invalid(DestinationValidation.InvalidReason.TOO_LONG)
             NumberParseException.ErrorType.NOT_A_NUMBER ->
                 DestinationValidation.Invalid(DestinationValidation.InvalidReason.NOT_A_NUMBER)
             else -> DestinationValidation.Invalid(DestinationValidation.InvalidReason.NOT_A_NUMBER)

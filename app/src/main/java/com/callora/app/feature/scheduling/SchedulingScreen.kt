@@ -16,7 +16,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -135,8 +135,11 @@ private fun ScheduleCard(
 ) {
     CalloraCard {
         Text(schedule.name, style = MaterialTheme.typography.titleMedium)
+        val weekdayLabels = buildList {
+            schedule.activeWeekdays.sorted().forEach { add(weekdayShort(it)) }
+        }.joinToString()
         Text(
-            schedule.activeWeekdays.sorted().joinToString { weekdayShort(it) },
+            weekdayLabels,
             style = MaterialTheme.typography.bodyMedium,
         )
         val window = if (schedule.startMinuteOfDay == null || schedule.endMinuteOfDay == null) {

@@ -71,7 +71,7 @@ object ReconciliationEngine {
             val destination = requireNotNull(rule.destinationE164)
             when (state) {
                 ForwardingState.ACTIVE_VERIFIED ->
-                    if (observed.destinationE164 != null && observed.destinationE164 != destination) {
+                    if (observed?.destinationE164 != null && observed.destinationE164 != destination) {
                         ReconciliationDecision.Activate(
                             rule.subscriptionId, rule.condition, destination,
                         )

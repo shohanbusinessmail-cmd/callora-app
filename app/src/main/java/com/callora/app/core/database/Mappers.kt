@@ -19,7 +19,7 @@ import com.callora.app.core.model.ScheduleModel
 import com.callora.app.core.model.VerificationProvenance
 
 private fun <T : Enum<T>> enumOrNull(name: String?, values: Array<T>): T? =
-    name?.let { runCatching { enumValueOf<T>(it) }.getOrNull() }
+    name?.let { target -> values.firstOrNull { it.name == target } }
 
 private fun csvToConditions(csv: String): Set<ForwardingCondition> =
     csv.split(",").filter { it.isNotBlank() }
