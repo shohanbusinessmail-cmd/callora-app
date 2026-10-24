@@ -17,20 +17,19 @@ permissions:
 jobs:
   build-and-publish:
     name: Build APK and publish GitHub release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
+      # The hosted runner image ships a complete Android SDK; the
+      # setup-android action fails on ubuntu-24.04 and is unnecessary.
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses >/dev/null || true
 
