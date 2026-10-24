@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+app/build/
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.hprof
+.cxx/
+
+# Keystore / signing material — never commit
+*.jks
+*.keystore
+keystore.properties
+
+# OS / reports
+.DS_Store
+captures/
+*.log
+
+# Test outputs
+/test-results/
+/coverage/

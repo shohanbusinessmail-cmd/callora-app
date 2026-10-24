@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Callora</string>
+    <string name="app_tagline">Smart Call Continuity</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">Continue</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_back">Back</string>
+    <string name="action_activate">Activate</string>
+    <string name="action_deactivate">Deactivate</string>
+    <string name="action_query">Check status</string>
+    <string name="action_add">Add</string>
+    <string name="action_close">Close</string>
+    <string name="action_grant_permission">Grant permission</string>
+    <string name="action_open_app_settings">Open app settings</string>
+    <string name="loading_generic">Loading…</string>
+    <string name="generic_error">Something went wrong. Please try again.</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_sims">SIMs</string>
+    <string name="nav_profiles">Profiles</string>
+    <string name="nav_history">History</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Welcome to Callora</string>
+    <string name="onboarding_welcome_body">Callora helps you reduce missed calls when your phone is switched off, out of coverage, or temporarily unreachable — using your operator\'s network-side call forwarding.</string>
+    <string name="onboarding_principle_title">How protection works</string>
+    <string name="onboarding_principle_body">When your phone is powered off, no Android app can run. Callora therefore configures a forwarding rule inside your operator\'s network in advance. While the phone is off, the network itself forwards eligible calls to your chosen destination.</string>
+    <string name="onboarding_sims_title">Your SIM subscriptions</string>
+    <string name="onboarding_sims_body">Callora discovers the SIMs in this device and lets you configure a separate destination and forwarding conditions for each eligible subscription.</string>
+    <string name="onboarding_permissions_title">Permissions</string>
+    <string name="onboarding_permissions_body">Callora asks only for the permissions its features use: phone state to read SIM information, call permission to hand confirmed forwarding commands to the system dialer, boot completion to re-check protection after restart, and notifications for important status changes.</string>
+    <string name="onboarding_privacy_title">Privacy first</string>
+    <string name="onboarding_privacy_body">Your configuration stays on this device. Callora has no internet backend, never reads contacts, call logs, SMS or location, and does not upload personal data.</string>
+    <string name="onboarding_finish_title">You are in control</string>
+    <string name="onboarding_finish_body">Every carrier-side change is shown to you before it happens, with the exact command, destination and possible charges. Callora never changes carrier settings without your confirmation.</string>
+    <string name="onboarding_button_next">Next</string>
+    <string name="onboarding_button_finish">Get started</string>
+    <string name="onboarding_button_skip">Skip for now</string>
+    <string name="permission_rationale_phone_state">READ_PHONE_STATE lets Callora discover your SIM subscriptions and their operator. Without it, SIM management cannot work.</string>
+    <string name="permission_rationale_call_phone">CALL_PHONE lets Callora hand a confirmed standard GSM forwarding command to the system dialer. You can deny it and press the call button yourself instead.</string>
+    <string name="permission_rationale_notifications">Notifications inform you when forwarding status changes or a manual action is required.</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">Home</string>
+    <string name="dashboard_readiness_title">Device readiness</string>
+    <string name="readiness_network_on">Network connected</string>
+    <string name="readiness_network_off">No network connection</string>
+    <string name="readiness_permission_granted">Phone permission granted</string>
+    <string name="readiness_permission_missing">Phone permission missing</string>
+    <string name="readiness_sim_count">Active SIMs: %1$d</string>
+    <string name="dashboard_no_sim_title">No SIM detected</string>
+    <string name="dashboard_no_sim_body">Insert a SIM and grant phone-state permission to start configuring call continuity.</string>
+    <string name="dashboard_last_verified">Last reconciliation: %1$s</string>
+    <string name="dashboard_never_verified">Not reconciled yet</string>
+    <string name="dashboard_primary_action_set_up">Set up protection</string>
+    <string name="dashboard_warnings_title">Warnings</string>
+    <string name="dashboard_pending_operations">Pending operations</string>
+    <string name="dashboard_view_all">View all</string>
+    <string name="dashboard_empty_history">No activity yet. Your forwarding actions will appear here.</string>
+
+    <!-- Forwarding states -->
+    <string name="state_UNKNOWN">Unknown</string>
+    <string name="state_INACTIVE">Inactive</string>
+    <string name="state_PENDING_ACTIVATION">Activation pending</string>
+    <string name="state_ACTIVE_VERIFIED">Active — verified</string>
+    <string name="state_ACTIVE_UNVERIFIED">Configured — not verified</string>
+    <string name="state_PENDING_DEACTIVATION">Deactivation pending</string>
+    <string name="state_ERROR">Error</string>
+    <string name="state_UNSUPPORTED">Unsupported</string>
+    <string name="state_MANUAL_ACTION_REQUIRED">Manual action required</string>
+
+    <!-- SIM management -->
+    <string name="sims_title">SIM subscriptions</string>
+    <string name="sims_empty_title">No subscriptions available</string>
+    <string name="sims_empty_body">Callora needs READ_PHONE_STATE permission and at least one active SIM to list subscriptions.</string>
+    <string name="sim_detail_slot">Slot %1$d</string>
+    <string name="sim_detail_carrier">Operator</string>
+    <string name="sim_detail_backend">Available mechanism</string>
+    <string name="sim_destination_section">Forwarding destination</string>
+    <string name="sim_destination_none">No destination configured</string>
+    <string name="sim_add_destination">Add destination</string>
+    <string name="sim_conditions_section">Forwarding conditions</string>
+    <string name="sim_capability_section">Operator capability</string>
+    <string name="condition_CFU">Forward all calls (CFU)</string>
+    <string name="condition_CFB">Forward when busy (CFB)</string>
+    <string name="condition_CFNRY">Forward when no reply (CFNRy)</string>
+    <string name="condition_CFNRC">Forward when unreachable (CFNRc)</string>
+    <string name="condition_CFU_desc">Forwards every eligible incoming call regardless of handset state.</string>
+    <string name="condition_CFB_desc">Forwards calls while you are on another call.</string>
+    <string name="condition_CFNRY_desc">Forwards calls you do not answer within the carrier\'s no-reply time.</string>
+    <string name="condition_CFNRC_desc">Primary power-off protection: forwards calls when the network considers you unreachable.</string>
+    <string name="confirm_title">Confirm carrier change</string>
+    <string name="confirm_body">Callora will hand this standard GSM command to the system dialer for SIM %1$d:\n\n%2$s\n\nCondition: %3$s\nDestination: %4$s</string>
+    <string name="confirm_body_no_dest">Callora will hand this standard GSM command to the system dialer for SIM %1$d:\n\n%2$s\n\nCondition: %3$s</string>
+    <string name="confirm_charge_warning">Your operator may charge for activation or for forwarded calls. Check current tariffs before confirming.</string>
+    <string name="confirm_sim_warning">Verify the correct SIM is selected in the dialer, especially on dual-SIM devices.</string>
+    <string name="confirm_launch_dialer">Open dialer</string>
+    <string name="result_title">What did the carrier respond?</string>
+    <string name="result_question">Callora cannot read the dialer response automatically. Please record what happened so the status stays accurate.</string>
+    <string name="result_accepted">The carrier confirmed success</string>
+    <string name="result_rejected">It failed or showed an error</string>
+    <string name="result_thanks">Your response has been recorded as user-reported evidence.</string>
+    <string name="mmi_handoff_explanation">The command is executed by the system phone app. Callora cannot confirm the carrier result itself.</string>
+    <string name="manual_steps_title">Manual configuration steps</string>
+    <string name="capability_warning">Capability NOT VERIFIED for this operator. Standard GSM syntax is offered without an operator guarantee.</string>
+    <string name="query_mmi_label">Status query code</string>
+    <string name="destination_dialog_title">Forwarding destination</string>
+    <string name="destination_label_hint">e.g. 01XXXXXXXXX or +8801XXXXXXXXX</string>
+    <string name="destination_invalid_EMPTY">Enter a phone number.</string>
+    <string name="destination_invalid_TOO_SHORT">The number is too short.</string>
+    <string name="destination_invalid_TOO_LONG">The number is too long.</string>
+    <string name="destination_invalid_NOT_A_NUMBER">This is not a valid phone number.</string>
+    <string name="destination_invalid_WRONG_REGION">Enter a valid Bangladesh (+880) mobile number.</string>
+    <string name="destination_saved">Destination saved</string>
+    <string name="destinations_section">Saved destinations</string>
+    <string name="backend_OFFICIAL_ANDROID_API">Official Android API (carrier-privileged only)</string>
+    <string name="backend_USER_CONFIRMED_MMI">User-confirmed GSM command via system dialer</string>
+    <string name="backend_MANUAL_GUIDE">Manual configuration guide</string>
+    <string name="backend_UNSUPPORTED">Unsupported on this device</string>
+    <string name="capability_status_SUPPORTED_OFFICIAL">Official evidence</string>
+    <string name="capability_status_SUPPORTED_DOCUMENTED">Documented</string>
+    <string name="capability_status_PARTIALLY_SUPPORTED">Partially supported</string>
+    <string name="capability_status_NOT_VERIFIED">Not verified</string>
+    <string name="capability_status_UNSUPPORTED">Unsupported</string>
+
+    <!-- Profiles -->
+    <string name="profiles_title">Profiles</string>
+    <string name="profiles_empty">No profiles yet. Create a personal or office profile to bundle conditions, destination and automation.</string>
+    <string name="profile_create">Create profile</string>
+    <string name="profile_edit">Edit profile</string>
+    <string name="profile_name_hint">Profile name</string>
+    <string name="profile_type_PERSONAL">Personal</string>
+    <string name="profile_type_OFFICE">Office</string>
+    <string name="profile_type_CUSTOM">Custom</string>
+    <string name="profile_type_TEMPORARY">Temporary protection</string>
+    <string name="policy_ALWAYS_PROTECT">Always protect unreachable calls</string>
+    <string name="policy_TEMPORARY">Temporary protection</string>
+    <string name="policy_MANUAL">Manual control only</string>
+    <string name="policy_CUSTOM">Custom automation</string>
+    <string name="profile_default">Default profile</string>
+    <string name="profile_delete_confirm">Delete this profile? Saved destinations are not removed.</string>
+    <string name="profile_saved">Profile saved</string>
+
+    <!-- Scheduling -->
+    <string name="scheduling_title">Schedules</string>
+    <string name="scheduling_empty">No schedules. Schedules use inexact Android background work and may be delayed by Doze or battery optimization.</string>
+    <string name="schedule_name_hint">Schedule name</string>
+    <string name="schedule_weekdays">Active weekdays</string>
+    <string name="weekday_1">Mon</string>
+    <string name="weekday_2">Tue</string>
+    <string name="weekday_3">Wed</string>
+    <string name="weekday_4">Thu</string>
+    <string name="weekday_5">Fri</string>
+    <string name="weekday_6">Sat</string>
+    <string name="weekday_7">Sun</string>
+    <string name="schedule_all_day">All day</string>
+    <string name="schedule_start">Start</string>
+    <string name="schedule_end">End</string>
+    <string name="schedule_saved">Schedule saved</string>
+    <string name="schedule_state_active">active window</string>
+    <string name="schedule_state_inactive">outside window</string>
+    <string name="scheduling_disclaimer">Android may delay background execution. Callora never promises exact-minute delivery.</string>
+
+    <!-- History -->
+    <string name="history_title">Activity history</string>
+    <string name="history_empty">No events recorded yet.</string>
+    <string name="history_clear">Clear history</string>
+    <string name="history_missing_destination">A configured rule has no valid destination; automation skipped it.</string>
+    <string name="history_automation_suspended">Automation suspended: the previously configured SIM is no longer present.</string>
+    <string name="history_schedule_evaluated">Schedule %1$s evaluated: %2$s</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_theme">Theme</string>
+    <string name="theme_SYSTEM">System default</string>
+    <string name="theme_LIGHT">Light</string>
+    <string name="theme_DARK">Dark</string>
+    <string name="settings_notifications">Status notifications</string>
+    <string name="settings_automation">Automation policy</string>
+    <string name="settings_privacy">Privacy and data</string>
+    <string name="settings_clear_data">Clear all stored configuration</string>
+    <string name="settings_clear_data_confirm">This removes destinations, profiles, schedules, history and settings stored on this device. Continue?</string>
+    <string name="settings_troubleshooting">Troubleshooting</string>
+    <string name="settings_about">About Callora</string>
+    <string name="settings_replay_onboarding">Replay onboarding</string>
+    <string name="language_english">English</string>
+    <string name="language_bengali">বাংলা</string>
+    <string name="settings_data_cleared">Local configuration cleared</string>
+
+    <!-- About -->
+    <string name="about_title">About</string>
+    <string name="about_version">Version %1$s (%2$d)</string>
+    <string name="about_developer_label">Developer</string>
+    <string name="about_developer_name">Shohan Khan</string>
+    <string name="about_contact_label">Contact</string>
+    <string name="about_contact_email">helloiamshohan@gmail.com</string>
+    <string name="about_description">Callora is a smart call continuity and call-forwarding assistant designed for Bangladesh, built around honest status reporting and carrier-safe workflows.</string>
+    <string name="about_license_note">No open-source license has been selected by the repository owner yet. All rights reserved by default.</string>
+
+    <!-- Troubleshooting -->
+    <string name="troubleshooting_title">Troubleshooting</string>
+    <string name="trouble_sim_unavailable_title">SIM unavailable</string>
+    <string name="trouble_sim_unavailable_body">Re-seat the SIM, confirm it is enabled in system settings, then pull to refresh the SIMs screen. Callora suspends automation for missing SIMs rather than applying rules to the wrong subscription.</string>
+    <string name="trouble_permission_title">Permission denied</string>
+    <string name="trouble_permission_body">Grant READ_PHONE_STATE (and optionally CALL_PHONE) from system app settings. Without CALL_PHONE, Callora pre-fills the dialer and you press call yourself.</string>
+    <string name="trouble_network_title">Network unavailable</string>
+    <string name="trouble_network_body">MMI commands require cellular service. Reconnect to the mobile network, then retry. Bounded retries handle short outages automatically.</string>
+    <string name="trouble_unsupported_service_title">Carrier service unsupported</string>
+    <string name="trouble_unsupported_service_body">The operator capability is marked NOT VERIFIED or unsupported. Use the manual guide or contact your operator\'s customer care before assuming the rule exists.</string>
+    <string name="trouble_carrier_rejection_title">Carrier rejection</string>
+    <string name="trouble_carrier_rejection_body">Note the exact carrier message, check service provisioning and tariff eligibility, then retry manually. Callora will not auto-retry a rejected chargeable operation.</string>
+    <string name="trouble_mmi_title">MMI/USSD failure</string>
+    <string name="trouble_mmi_body">Confirm the standard GSM code and destination formatting, try the query code, and verify the correct SIM performed the command on dual-SIM devices.</string>
+    <string name="trouble_unknown_state_title">Unknown forwarding state</string>
+    <string name="trouble_unknown_state_body">Android does not let third-party apps parse MMI responses. Dial the query code yourself and record the result in Callora to keep the status honest.</string>
+    <string name="trouble_retry_title">Retry limit reached</string>
+    <string name="trouble_retry_body">The operation exhausted its safe retry budget. Review the failure reason in History and start a new confirmed operation when ready.</string>
+    <string name="trouble_conflict_title">Configuration conflict</string>
+    <string name="trouble_conflict_body">An identical operation is already in flight for this SIM and condition. Wait for it to finish before requesting another.</string>
+    <string name="trouble_api_title">Unsupported Android API</string>
+    <string name="trouble_api_body">Programmatic call-forwarding control is restricted to carrier-privileged apps. Callora uses the user-confirmed dialer workflow instead.</string>
+    <string name="trouble_destination_title">Destination validation failure</string>
+    <string name="trouble_destination_body">Use a valid Bangladesh mobile number in 01XXXXXXXXX or +8801XXXXXXXXX format. Validation checks syntax only — it cannot prove the number is active or eligible.</string>
+
+    <!-- History event types -->
+    <string name="history_type_PROFILE_CHANGED">Profile changed</string>
+    <string name="history_type_DESTINATION_CHANGED">Destination changed</string>
+    <string name="history_type_ACTIVATION_REQUESTED">Activation requested</string>
+    <string name="history_type_ACTIVATION_ACCEPTED">Activation accepted</string>
+    <string name="history_type_STATUS_VERIFIED">Status verified</string>
+    <string name="history_type_STATUS_QUERY_FAILED">Status query failed</string>
+    <string name="history_type_NETWORK_LOST">Network lost</string>
+    <string name="history_type_NETWORK_RESTORED">Network restored</string>
+    <string name="history_type_SIM_CHANGED">SIM availability changed</string>
+    <string name="history_type_RETRY_SCHEDULED">Retry scheduled</string>
+    <string name="history_type_RETRY_EXHAUSTED">Retry limit reached</string>
+    <string name="history_type_MANUAL_ACTION_REQUIRED">Manual action required</string>
+    <string name="history_type_DEACTIVATION_REQUESTED">Deactivation requested</string>
+    <string name="history_type_DEACTIVATION_VERIFIED">Deactivation verified</string>
+    <string name="history_type_PERMISSION_CHANGED">Permission changed</string>
+    <string name="history_type_RECONCILIATION">Reconciliation</string>
+    <string name="history_outcome_INFO">Info</string>
+    <string name="history_outcome_SUCCESS">Success</string>
+    <string name="history_outcome_WARNING">Warning</string>
+    <string name="history_outcome_ERROR">Error</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Callora status</string>
+    <string name="notification_channel_description">Important forwarding-state changes and required manual actions.</string>
+    <string name="notification_manual_title">Manual action required</string>
+    <string name="notification_manual_text">Open Callora to confirm a forwarding change. Carrier settings are never modified without your confirmation.</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  WorkManager is initialized explicitly through CalloraApplication
+  (Configuration.Provider) so a custom WorkerFactory can inject the app
+  container. The androidx.startup default initializer is removed in the manifest.
+  This file exists to document that decision; it is not referenced directly.
+-->
+<resources />

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Callora</string>
+    <string name="app_tagline">স্মার্ট কল কন্টিনিউটি</string>
+
+    <!-- Generic actions -->
+    <string name="action_continue">চালিয়ে যান</string>
+    <string name="action_save">সংরক্ষণ করুন</string>
+    <string name="action_cancel">বাতিল</string>
+    <string name="action_retry">আবার চেষ্টা করুন</string>
+    <string name="action_delete">মুছুন</string>
+    <string name="action_edit">সম্পাদনা</string>
+    <string name="action_confirm">নিশ্চিত করুন</string>
+    <string name="action_back">পেছনে</string>
+    <string name="action_activate">সক্রিয় করুন</string>
+    <string name="action_deactivate">নিষ্ক্রিয় করুন</string>
+    <string name="action_query">স্ট্যাটাস দেখুন</string>
+    <string name="action_add">যোগ করুন</string>
+    <string name="action_close">বন্ধ করুন</string>
+    <string name="action_grant_permission">অনুমতি দিন</string>
+    <string name="action_open_app_settings">অ্যাপ সেটিংস খুলুন</string>
+    <string name="loading_generic">লোড হচ্ছে…</string>
+    <string name="generic_error">কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">হোম</string>
+    <string name="nav_sims">সিম</string>
+    <string name="nav_profiles">প্রোফাইল</string>
+    <string name="nav_history">ইতিহাস</string>
+    <string name="nav_settings">সেটিংস</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Callora-তে স্বাগতম</string>
+    <string name="onboarding_welcome_body">ফোন বন্ধ থাকলে, নেটওয়ার্ক কভারেজের বাইরে থাকলে বা সাময়িকভাবে অপ্রাপ্য হলে — আপনার অপারেটরের নেটওয়ার্ক-সাইড কল ফরওয়ার্ডিং ব্যবহার করে Callora মিস কল কমাতে সাহায্য করে।</string>
+    <string name="onboarding_principle_title">সুরক্ষা যেভাবে কাজ করে</string>
+    <string name="onboarding_principle_body">ফোন সম্পূর্ণ বন্ধ থাকলে কোনো অ্যান্ড্রয়েড অ্যাপ চলতে পারে না। তাই Callora আগে থেকেই আপনার অপারেটরের নেটওয়ার্কে একটি ফরওয়ার্ডিং নিয়ম সেট করে। ফোন বন্ধ থাকা অবস্থায় নেটওয়ার্ক নিজেই যোগ্য কলগুলো আপনার নির্বাচিত নম্বরে পাঠিয়ে দেয়।</string>
+    <string name="onboarding_sims_title">আপনার সিম সাবস্ক্রিপশন</string>
+    <string name="onboarding_sims_body">Callora ডিভাইসের সিম শনাক্ত করে এবং প্রতিটি যোগ্য সাবস্ক্রিপশনের জন্য আলাদা গন্তব্য নম্বর ও ফরওয়ার্ডিং শর্ত সেট করার সুযোগ দেয়।</string>
+    <string name="onboarding_permissions_title">অনুমতি</string>
+    <string name="onboarding_permissions_body">Callora শুধু প্রয়োজনীয় অনুমতিই চায়: সিম তথ্য পড়তে ফোন স্টেট, নিশ্চিত করা ফরওয়ার্ডিং কমান্ড সিস্টেম ডায়ালারে পাঠাতে কল অনুমতি, রিস্টার্টের পর সুরক্ষা যাচাইয়ে বুট কমপ্লিশন এবং গুরুত্বপূর্ণ স্ট্যাটাস পরিবর্তনে নোটিফিকেশন।</string>
+    <string name="onboarding_privacy_title">গোপনীয়তা প্রথমে</string>
+    <string name="onboarding_privacy_body">আপনার কনফিগারেশন এই ডিভাইসেই থাকে। Callora-র কোনো ইন্টারনেট ব্যাকএন্ড নেই; এটি কন্ট্যাক্ট, কল লগ, এসএমএস বা লোকেশন কখনো পড়ে না এবং ব্যক্তিগত তথ্য আপলোড করে না।</string>
+    <string name="onboarding_finish_title">নিয়ন্ত্রণ আপনার হাতে</string>
+    <string name="onboarding_finish_body">প্রতিটি নেটওয়ার্ক-সাইড পরিবর্তনের আগে সঠিক কমান্ড, গন্তব্য নম্বর ও সম্ভাব্য চার্জ আপনাকে দেখানো হবে। আপনার নিশ্চিতকরণ ছাড়া Callora ক্যারিয়ার সেটিংস পরিবর্তন করে না।</string>
+    <string name="onboarding_button_next">পরবর্তী</string>
+    <string name="onboarding_button_finish">শুরু করুন</string>
+    <string name="onboarding_button_skip">এখনই নয়</string>
+    <string name="permission_rationale_phone_state">READ_PHONE_STATE অনুমতি Callora-কে আপনার সিম সাবস্ক্রিপশন ও অপারেটর শনাক্ত করতে দেয়। এটি ছাড়া সিম ব্যবস্থাপনা কাজ করবে না।</string>
+    <string name="permission_rationale_call_phone">CALL_PHONE অনুমতি Callora-কে নিশ্চিত করা স্ট্যান্ডার্ড GSM ফরওয়ার্ডিং কমান্ড সিস্টেম ডায়ালারে পাঠাতে দেয়। অস্বীকার করলে Callora নম্বরটি পূরণ করে দেবে, আপনি নিজে কল বোতাম চাপবেন।</string>
+    <string name="permission_rationale_notifications">ফরওয়ার্ডিং স্ট্যাটাস পরিবর্তন বা ম্যানুয়াল অ্যাকশনের প্রয়োজন হলে নোটিফিকেশন আপনাকে জানায়।</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">হোম</string>
+    <string name="dashboard_readiness_title">ডিভাইস প্রস্তুতি</string>
+    <string name="readiness_network_on">নেটওয়ার্ক সংযুক্ত</string>
+    <string name="readiness_network_off">কোনো নেটওয়ার্ক সংযোগ নেই</string>
+    <string name="readiness_permission_granted">ফোন অনুমতি দেওয়া আছে</string>
+    <string name="readiness_permission_missing">ফোন অনুমতি নেই</string>
+    <string name="readiness_sim_count">সক্রিয় সিম: %1$d</string>
+    <string name="dashboard_no_sim_title">কোনো সিম শনাক্ত হয়নি</string>
+    <string name="dashboard_no_sim_body">কল কন্টিনিউটি সেট করতে একটি সিম ঢোকান এবং ফোন-স্টেট অনুমতি দিন।</string>
+    <string name="dashboard_last_verified">সর্বশেষ সমন্বয়: %1$s</string>
+    <string name="dashboard_never_verified">এখনো সমন্বয় করা হয়নি</string>
+    <string name="dashboard_primary_action_set_up">সুরক্ষা সেট করুন</string>
+    <string name="dashboard_warnings_title">সতর্কতা</string>
+    <string name="dashboard_pending_operations">অপেক্ষমাণ অপারেশন</string>
+    <string name="dashboard_view_all">সব দেখুন</string>
+    <string name="dashboard_empty_history">এখনো কোনো কার্যক্রম নেই। আপনার ফরওয়ার্ডিং কার্যক্রম এখানে দেখা যাবে।</string>
+
+    <!-- Forwarding states -->
+    <string name="state_UNKNOWN">অজানা</string>
+    <string name="state_INACTIVE">নিষ্ক্রিয়</string>
+    <string name="state_PENDING_ACTIVATION">সক্রিয়করণ অপেক্ষমাণ</string>
+    <string name="state_ACTIVE_VERIFIED">সক্রিয় — যাচাইকৃত</string>
+    <string name="state_ACTIVE_UNVERIFIED">কনফিগার করা — যাচাই হয়নি</string>
+    <string name="state_PENDING_DEACTIVATION">নিষ্ক্রিয়করণ অপেক্ষমাণ</string>
+    <string name="state_ERROR">ত্রুটি</string>
+    <string name="state_UNSUPPORTED">সমর্থিত নয়</string>
+    <string name="state_MANUAL_ACTION_REQUIRED">ম্যানুয়াল অ্যাকশন প্রয়োজন</string>
+
+    <!-- SIM management -->
+    <string name="sims_title">সিম সাবস্ক্রিপশন</string>
+    <string name="sims_empty_title">কোনো সাবস্ক্রিপশন পাওয়া যায়নি</string>
+    <string name="sims_empty_body">সাবস্ক্রিপশন তালিকার জন্য READ_PHONE_STATE অনুমতি এবং অন্তত একটি সক্রিয় সিম প্রয়োজন।</string>
+    <string name="sim_detail_slot">স্লট %1$d</string>
+    <string name="sim_detail_carrier">অপারেটর</string>
+    <string name="sim_detail_backend">উপলব্ধ মেকানিজম</string>
+    <string name="sim_destination_section">ফরওয়ার্ডিং গন্তব্য</string>
+    <string name="sim_destination_none">কোনো গন্তব্য সেট করা হয়নি</string>
+    <string name="sim_add_destination">গন্তব্য যোগ করুন</string>
+    <string name="sim_conditions_section">ফরওয়ার্ডিং শর্ত</string>
+    <string name="sim_capability_section">অপারেটর সক্ষমতা</string>
+    <string name="condition_CFU">সব কল ফরওয়ার্ড (CFU)</string>
+    <string name="condition_CFB">ব্যস্ত থাকলে ফরওয়ার্ড (CFB)</string>
+    <string name="condition_CFNRY">উত্তর না পেলে ফরওয়ার্ড (CFNRy)</string>
+    <string name="condition_CFNRC">অপ্রাপ্য হলে ফরওয়ার্ড (CFNRc)</string>
+    <string name="condition_CFU_desc">হ্যান্ডসেটের অবস্থা যাই হোক, প্রতিটি যোগ্য ইনকামিং কল ফরওয়ার্ড করে।</string>
+    <string name="condition_CFB_desc">আপনি অন্য কলে থাকা অবস্থায় কল ফরওয়ার্ড করে।</string>
+    <string name="condition_CFNRY_desc">অপারেটরের নির্ধারিত সময়ের মধ্যে উত্তর না দিলে কল ফরওয়ার্ড করে।</string>
+    <string name="condition_CFNRC_desc">প্রধান পাওয়ার-অফ সুরক্ষা: নেটওয়ার্ক যখন আপনাকে অপ্রাপ্য ধরে, তখন কল ফরওয়ার্ড করে।</string>
+    <string name="confirm_title">ক্যারিয়ার পরিবর্তন নিশ্চিত করুন</string>
+    <string name="confirm_body">Callora সিম %1$d-এর জন্য এই স্ট্যান্ডার্ড GSM কমান্ডটি সিস্টেম ডায়ালারে পাঠাবে:\n\n%2$s\n\nশর্ত: %3$s\nগন্তব্য: %4$s</string>
+    <string name="confirm_body_no_dest">Callora সিম %1$d-এর জন্য এই স্ট্যান্ডার্ড GSM কমান্ডটি সিস্টেম ডায়ালারে পাঠাবে:\n\n%2$s\n\nশর্ত: %3$s</string>
+    <string name="confirm_charge_warning">সক্রিয়করণ বা ফরওয়ার্ড হওয়া কলের জন্য আপনার অপারেটর চার্জ নিতে পারে। নিশ্চিত করার আগে বর্তমান ট্যারিফ দেখে নিন।</string>
+    <string name="confirm_sim_warning">ডুয়াল-সিম ডিভাইসে ডায়ালারে সঠিক সিম নির্বাচিত হয়েছে কিনা যাচাই করুন।</string>
+    <string name="confirm_launch_dialer">ডায়ালার খুলুন</string>
+    <string name="result_title">ক্যারিয়ার কী উত্তর দিয়েছে?</string>
+    <string name="result_question">Callora স্বয়ংক্রিয়ভাবে ডায়ালারের উত্তর পড়তে পারে না। স্ট্যাটাস সঠিক রাখতে আসল ফলাফলটি লিপিবদ্ধ করুন।</string>
+    <string name="result_accepted">ক্যারিয়ার সফলতা নিশ্চিত করেছে</string>
+    <string name="result_rejected">ব্যর্থ হয়েছে বা ত্রুটি দেখিয়েছে</string>
+    <string name="result_thanks">আপনার উত্তর ব্যবহারকারী-রিপোর্টেড প্রমাণ হিসেবে সংরক্ষিত হয়েছে।</string>
+    <string name="mmi_handoff_explanation">কমান্ডটি সিস্টেম ফোন অ্যাপ চালায়। Callora নিজে ক্যারিয়ার ফলাফল নিশ্চিত করতে পারে না।</string>
+    <string name="manual_steps_title">ম্যানুয়াল কনফিগারেশন ধাপ</string>
+    <string name="capability_warning">এই অপারেটরের জন্য সক্ষমতা যাচাই করা হয়নি (NOT VERIFIED)। অপারেটর গ্যারান্টি ছাড়াই স্ট্যান্ডার্ড GSM সিনট্যাক্স দেওয়া হচ্ছে।</string>
+    <string name="query_mmi_label">স্ট্যাটাস কোয়েরি কোড</string>
+    <string name="destination_dialog_title">ফরওয়ার্ডিং গন্তব্য</string>
+    <string name="destination_label_hint">যেমন 01XXXXXXXXX বা +8801XXXXXXXXX</string>
+    <string name="destination_invalid_EMPTY">একটি ফোন নম্বর লিখুন।</string>
+    <string name="destination_invalid_TOO_SHORT">নম্বরটি খুব ছোট।</string>
+    <string name="destination_invalid_TOO_LONG">নম্বরটি খুব বড়।</string>
+    <string name="destination_invalid_NOT_A_NUMBER">এটি বৈধ ফোন নম্বর নয়।</string>
+    <string name="destination_invalid_WRONG_REGION">বৈধ বাংলাদেশি (+880) মোবাইল নম্বর লিখুন।</string>
+    <string name="destination_saved">গন্তব্য সংরক্ষিত হয়েছে</string>
+    <string name="destinations_section">সংরক্ষিত গন্তব্য</string>
+    <string name="backend_OFFICIAL_ANDROID_API">অফিসিয়াল অ্যান্ড্রয়েড API (শুধু ক্যারিয়ার-প্রিভিলেজড)</string>
+    <string name="backend_USER_CONFIRMED_MMI">ব্যবহারকারী-নিশ্চিত GSM কমান্ড, সিস্টেম ডায়ালারের মাধ্যমে</string>
+    <string name="backend_MANUAL_GUIDE">ম্যানুয়াল কনফিগারেশন গাইড</string>
+    <string name="backend_UNSUPPORTED">এই ডিভাইসে সমর্থিত নয়</string>
+    <string name="capability_status_SUPPORTED_OFFICIAL">অফিসিয়াল প্রমাণ</string>
+    <string name="capability_status_SUPPORTED_DOCUMENTED">নথিভুক্ত</string>
+    <string name="capability_status_PARTIALLY_SUPPORTED">আংশিকভাবে সমর্থিত</string>
+    <string name="capability_status_NOT_VERIFIED">যাচাই করা হয়নি</string>
+    <string name="capability_status_UNSUPPORTED">সমর্থিত নয়</string>
+
+    <!-- Profiles -->
+    <string name="profiles_title">প্রোফাইল</string>
+    <string name="profiles_empty">এখনো কোনো প্রোফাইল নেই। শর্ত, গন্তব্য ও অটোমেশন একসাথে সংরক্ষণ করতে একটি পার্সোনাল বা অফিস প্রোফাইল তৈরি করুন।</string>
+    <string name="profile_create">প্রোফাইল তৈরি করুন</string>
+    <string name="profile_edit">প্রোফাইল সম্পাদনা</string>
+    <string name="profile_name_hint">প্রোফাইলের নাম</string>
+    <string name="profile_type_PERSONAL">পার্সোনাল</string>
+    <string name="profile_type_OFFICE">অফিস</string>
+    <string name="profile_type_CUSTOM">কাস্টম</string>
+    <string name="profile_type_TEMPORARY">অস্থায়ী সুরক্ষা</string>
+    <string name="policy_ALWAYS_PROTECT">অপ্রাপ্য কলে সবসময় সুরক্ষা</string>
+    <string name="policy_TEMPORARY">অস্থায়ী সুরক্ষা</string>
+    <string name="policy_MANUAL">শুধু ম্যানুয়াল নিয়ন্ত্রণ</string>
+    <string name="policy_CUSTOM">কাস্টম অটোমেশন</string>
+    <string name="profile_default">ডিফল্ট প্রোফাইল</string>
+    <string name="profile_delete_confirm">এই প্রোফাইল মুছবেন? সংরক্ষিত গন্তব্য নম্বর মুছে যাবে না।</string>
+    <string name="profile_saved">প্রোফাইল সংরক্ষিত হয়েছে</string>
+
+    <!-- Scheduling -->
+    <string name="scheduling_title">সময়সূচি</string>
+    <string name="scheduling_empty">কোনো সময়সূচি নেই। সময়সূচি অ্যান্ড্রয়েডের অনিয়মিত ব্যাকগ্রাউন্ড ওয়ার্ক ব্যবহার করে; Doze বা ব্যাটারি অপটিমাইজেশনের কারণে বিলম্ব হতে পারে।</string>
+    <string name="schedule_name_hint">সময়সূচির নাম</string>
+    <string name="schedule_weekdays">সক্রিয় সপ্তাহের দিন</string>
+    <string name="weekday_1">সোম</string>
+    <string name="weekday_2">মঙ্গল</string>
+    <string name="weekday_3">বুধ</string>
+    <string name="weekday_4">বৃহঃ</string>
+    <string name="weekday_5">শুক্র</string>
+    <string name="weekday_6">শনি</string>
+    <string name="weekday_7">রবি</string>
+    <string name="schedule_all_day">সারাদিন</string>
+    <string name="schedule_start">শুরু</string>
+    <string name="schedule_end">শেষ</string>
+    <string name="schedule_saved">সময়সূচি সংরক্ষিত হয়েছে</string>
+    <string name="schedule_state_active">সক্রিয় উইন্ডো</string>
+    <string name="schedule_state_inactive">উইন্ডোর বাইরে</string>
+    <string name="scheduling_disclaimer">অ্যান্ড্রয়েড ব্যাকগ্রাউন্ড এক্সিকিউশন বিলম্বিত করতে পারে। Callora নিখুঁত মিনিট-নির্ভর ডেলিভারি প্রতিশ্রুতি দেয় না।</string>
+
+    <!-- History -->
+    <string name="history_title">কার্যক্রমের ইতিহাস</string>
+    <string name="history_empty">এখনো কোনো ইভেন্ট রেকর্ড হয়নি।</string>
+    <string name="history_clear">ইতিহাস মুছুন</string>
+    <string name="history_missing_destination">একটি কনফিগার করা নিয়মের বৈধ গন্তব্য নেই; অটোমেশন সেটি এড়িয়ে গেছে।</string>
+    <string name="history_automation_suspended">অটোমেশন স্থগিত: আগে কনফিগার করা সিম আর উপলব্ধ নেই।</string>
+    <string name="history_schedule_evaluated">সময়সূচি %1$s মূল্যায়িত: %2$s</string>
+
+    <!-- Settings -->
+    <string name="settings_title">সেটিংস</string>
+    <string name="settings_language">ভাষা</string>
+    <string name="settings_theme">থিম</string>
+    <string name="theme_SYSTEM">সিস্টেম ডিফল্ট</string>
+    <string name="theme_LIGHT">লাইট</string>
+    <string name="theme_DARK">ডার্ক</string>
+    <string name="settings_notifications">স্ট্যাটাস নোটিফিকেশন</string>
+    <string name="settings_automation">অটোমেশন নীতি</string>
+    <string name="settings_privacy">গোপনীয়তা ও ডেটা</string>
+    <string name="settings_clear_data">সংরক্ষিত সব কনফিগারেশন মুছুন</string>
+    <string name="settings_clear_data_confirm">এই ডিভাইসে সংরক্ষিত গন্তব্য, প্রোফাইল, সময়সূচি, ইতিহাস ও সেটিংস মুছে যাবে। চালিয়ে যাবেন?</string>
+    <string name="settings_troubleshooting">সমস্যা সমাধান</string>
+    <string name="settings_about">Callora সম্পর্কে</string>
+    <string name="settings_replay_onboarding">অনবোর্ডিং আবার দেখুন</string>
+    <string name="language_english">English</string>
+    <string name="language_bengali">বাংলা</string>
+    <string name="settings_data_cleared">স্থানীয় কনফিগারেশন মুছে ফেলা হয়েছে</string>
+
+    <!-- About -->
+    <string name="about_title">পরিচিতি</string>
+    <string name="about_version">ভার্সন %1$s (%2$d)</string>
+    <string name="about_developer_label">ডেভেলপার</string>
+    <string name="about_developer_name">Shohan Khan</string>
+    <string name="about_contact_label">যোগাযোগ</string>
+    <string name="about_contact_email">helloiamshohan@gmail.com</string>
+    <string name="about_description">Callora বাংলাদেশের জন্য তৈরি একটি স্মার্ট কল কন্টিনিউটি ও কল ফরওয়ার্ডিং সহকারী, যা সৎ স্ট্যাটাস রিপোর্টিং এবং ক্যারিয়ার-নিরাপদ ওয়ার্কফ্লোতে গড়ে উঠেছে।</string>
+    <string name="about_license_note">রিপোজিটরি মালিক এখনো কোনো ওপেন-সোর্স লাইসেন্স নির্বাচন করেননি। ডিফল্টভাবে সর্বস্বত্ব সংরক্ষিত।</string>
+
+    <!-- Troubleshooting -->
+    <string name="troubleshooting_title">সমস্যা সমাধান</string>
+    <string name="trouble_sim_unavailable_title">সিম উপলব্ধ নেই</string>
+    <string name="trouble_sim_unavailable_body">সিম পুনরায় বসান, সিস্টেম সেটিংসে সিম চালু আছে কিনা দেখুন, তারপর সিম স্ক্রিন রিফ্রেশ করুন। Callora ভুল সাবস্ক্রিপশনে নিয়ম প্রয়োগের বদলে অনুপস্থিত সিমের অটোমেশন স্থগিত করে।</string>
+    <string name="trouble_permission_title">অনুমতি প্রত্যাখ্যাত</string>
+    <string name="trouble_permission_body">সিস্টেম অ্যাপ সেটিংস থেকে READ_PHONE_STATE (এবং চাইলে CALL_PHONE) দিন। CALL_PHONE ছাড়া Callora ডায়ালার পূরণ করে দেবে, আপনি নিজে কল চাপবেন।</string>
+    <string name="trouble_network_title">নেটওয়ার্ক উপলব্ধ নেই</string>
+    <string name="trouble_network_body">MMI কমান্ডের জন্য সেলুলার সেবা প্রয়োজন। মোবাইল নেটওয়ার্কে পুনরায় সংযুক্ত হয়ে আবার চেষ্টা করুন। সীমিত রিট্রাই সংক্ষিপ্ত বিভ্রাট সামলায়।</string>
+    <string name="trouble_unsupported_service_title">ক্যারিয়ার সেবা সমর্থিত নয়</string>
+    <string name="trouble_unsupported_service_body">অপারেটর সক্ষমতা NOT VERIFIED বা অসমর্থিত চিহ্নিত। নিয়মটি আছে ধরে নেওয়ার আগে ম্যানুয়াল গাইড ব্যবহার করুন বা অপারেটরের কাস্টমার কেয়ারে যোগাযোগ করুন।</string>
+    <string name="trouble_carrier_rejection_title">ক্যারিয়ার প্রত্যাখ্যান</string>
+    <string name="trouble_carrier_rejection_body">ক্যারিয়ারের সঠিক বার্তাটি নোট করুন, সেবা প্রোভিশনিং ও ট্যারিফ যোগ্যতা যাচাই করে ম্যানুয়ালি আবার চেষ্টা করুন। প্রত্যাখ্যাত চার্জযোগ্য অপারেশন Callora স্বয়ংক্রিয়ভাবে রিট্রাই করে না।</string>
+    <string name="trouble_mmi_title">MMI/USSD ব্যর্থতা</string>
+    <string name="trouble_mmi_body">স্ট্যান্ডার্ড GSM কোড ও গন্তব্য ফরম্যাট যাচাই করুন, কোয়েরি কোড চেষ্টা করুন এবং ডুয়াল-সিম ডিভাইসে সঠিক সিম কমান্ড চালিয়েছে কিনা নিশ্চিত হন।</string>
+    <string name="trouble_unknown_state_title">অজানা ফরওয়ার্ডিং স্ট্যাটাস</string>
+    <string name="trouble_unknown_state_body">থার্ড-পার্টি অ্যাপ MMI উত্তর পার্স করতে পারে না। নিজে কোয়েরি কোড ডায়াল করুন এবং স্ট্যাটাস সৎ রাখতে Callora-তে ফলাফল লিপিবদ্ধ করুন।</string>
+    <string name="trouble_retry_title">রিট্রাই সীমা শেষ</string>
+    <string name="trouble_retry_body">অপারেশনটির নিরাপদ রিট্রাই বাজেট শেষ হয়েছে। ইতিহাস থেকে ব্যর্থতার কারণ দেখুন এবং প্রস্তুত হলে নতুন নিশ্চিত অপারেশন শুরু করুন।</string>
+    <string name="trouble_conflict_title">কনফিগারেশন দ্বন্দ্ব</string>
+    <string name="trouble_conflict_body">এই সিম ও শর্তের জন্য অভিন্ন একটি অপারেশন আগে থেকেই চলমান। নতুন অনুরোধের আগে এটি শেষ হওয়ার অপেক্ষা করুন।</string>
+    <string name="trouble_api_title">অসমর্থিত অ্যান্ড্রয়েড API</string>
+    <string name="trouble_api_body">প্রোগ্রাম্যাটিক কল ফরওয়ার্ডিং নিয়ন্ত্রণ ক্যারিয়ার-প্রিভিলেজড অ্যাপের জন্য সংরক্ষিত। Callora তার বদলে ব্যবহারকারী-নিশ্চিত ডায়ালার ওয়ার্কফ্লো ব্যবহার করে।</string>
+    <string name="trouble_destination_title">গন্তব্য যাচাইকরণ ব্যর্থ</string>
+    <string name="trouble_destination_body">বৈধ বাংলাদেশি মোবাইল নম্বর 01XXXXXXXXX বা +8801XXXXXXXXX ফরম্যাটে লিখুন। যাচাই শুধু সিনট্যাক্স পরীক্ষা করে — নম্বর সক্রিয় বা যোগ্য কিনা তা প্রমাণ করে না।</string>
+
+    <!-- History event types -->
+    <string name="history_type_PROFILE_CHANGED">প্রোফাইল পরিবর্তিত</string>
+    <string name="history_type_DESTINATION_CHANGED">গন্তব্য পরিবর্তিত</string>
+    <string name="history_type_ACTIVATION_REQUESTED">সক্রিয়করণ অনুরোধ</string>
+    <string name="history_type_ACTIVATION_ACCEPTED">সক্রিয়করণ গৃহীত</string>
+    <string name="history_type_STATUS_VERIFIED">স্ট্যাটাস যাচাইকৃত</string>
+    <string name="history_type_STATUS_QUERY_FAILED">স্ট্যাটাস কোয়েরি ব্যর্থ</string>
+    <string name="history_type_NETWORK_LOST">নেটওয়ার্ক বিচ্ছিন্ন</string>
+    <string name="history_type_NETWORK_RESTORED">নেটওয়ার্ক পুনর্সংযুক্ত</string>
+    <string name="history_type_SIM_CHANGED">সিম প্রাপ্যতা পরিবর্তিত</string>
+    <string name="history_type_RETRY_SCHEDULED">রিট্রাই নির্ধারিত</string>
+    <string name="history_type_RETRY_EXHAUSTED">রিট্রাই সীমা শেষ</string>
+    <string name="history_type_MANUAL_ACTION_REQUIRED">ম্যানুয়াল অ্যাকশন প্রয়োজন</string>
+    <string name="history_type_DEACTIVATION_REQUESTED">নিষ্ক্রিয়করণ অনুরোধ</string>
+    <string name="history_type_DEACTIVATION_VERIFIED">নিষ্ক্রিয়করণ যাচাইকৃত</string>
+    <string name="history_type_PERMISSION_CHANGED">অনুমতি পরিবর্তিত</string>
+    <string name="history_type_RECONCILIATION">সমন্বয়</string>
+    <string name="history_outcome_INFO">তথ্য</string>
+    <string name="history_outcome_SUCCESS">সফল</string>
+    <string name="history_outcome_WARNING">সতর্কতা</string>
+    <string name="history_outcome_ERROR">ত্রুটি</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Callora স্ট্যাটাস</string>
+    <string name="notification_channel_description">গুরুত্বপূর্ণ ফরওয়ার্ডিং-স্ট্যাটাস পরিবর্তন ও প্রয়োজনীয় ম্যানুয়াল অ্যাকশন।</string>
+    <string name="notification_manual_title">ম্যানুয়াল অ্যাকশন প্রয়োজন</string>
+    <string name="notification_manual_text">ফরওয়ার্ডিং পরিবর্তন নিশ্চিত করতে Callora খুলুন। আপনার নিশ্চিতকরণ ছাড়া ক্যারিয়ার সেটিংস পরিবর্তন করা হয় না।</string>
+</resources>

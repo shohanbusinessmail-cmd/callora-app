@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Backup policy: user preferences and configuration may be restored on the
+  user's own device via Android Auto Backup. No telephony identifiers or
+  credentials are stored by Callora.
+-->
+<full-backup-content>
+    <include domain="database" path="callora.db" />
+    <include domain="sharedpref" path="." />
+    <include domain="file" path="datastore/" />
+</full-backup-content>

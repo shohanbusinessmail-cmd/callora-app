@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Compose renders all in-app styling; this XML theme only covers the
+      pre-Compose window. AppCompat parent is required by AppCompatActivity
+      (used for the back-ported per-app locale manager).
+    -->
+    <style name="Theme.Callora" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/callora_window_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
