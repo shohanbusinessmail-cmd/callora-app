@@ -14,9 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        run: echo "runner alive: $(uname -a)"
+        run: echo runner-alive
       - name: Tool check
         run: |
-          which java || echo "no java"
           which git
           pwd

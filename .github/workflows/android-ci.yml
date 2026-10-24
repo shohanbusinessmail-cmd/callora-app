@@ -47,38 +47,39 @@ jobs:
           ./gradlew --no-daemon assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest --stacktrace 2>&1 | tee ci-full.log
           status=${PIPESTATUS[0]}
           echo "gradle_exit=$status" >> "$GITHUB_ENV"
+          # Compact, size-bounded report that can be read back through the GitHub API.
+          {
+            echo "=== ERROR LINES ==="
+            grep -n -E "^e: |error:|FAILURE:|What went wrong|Caused by|> Task .*FAILED|Unresolved reference|Cannot access|Compilation error" ci-full.log | head -150
+            echo
+            echo "=== TAIL (300) ==="
+            tail -n 300 ci-full.log
+          } > ci-report.log
           exit 0
 
-      - name: Publish verification log to ci-artifacts branch
+      - name: Publish report to ci-artifacts branch
         if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -x
-          REPO="${GITHUB_REPOSITORY}"
-          ART=/tmp/ci-artifacts
-          rm -rf "$ART"
-          if ! git clone --depth 1 --branch ci-artifacts "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "$ART" 2>/dev/null; then
-            mkdir -p "$ART"
-            cd "$ART"
-            git init -b ci-artifacts
-            git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
-          else
-            cd "$ART"
+          set -e
+          REPO="$GITHUB_REPOSITORY"
+          BASE_REF="arena/ce4df19c-callora-app"
+          if ! gh api "repos/$REPO/git/ref/heads/ci-artifacts" >/dev/null 2>&1; then
+            BASE_SHA=$(gh api "repos/$REPO/git/ref/heads/$BASE_REF" --jq .object.sha)
+            gh api "repos/$REPO/git/refs" -f ref="refs/heads/ci-artifacts" -f sha="$BASE_SHA" >/dev/null
           fi
-          git config user.email "ci@callora.local"
-          git config user.name "Callora CI"
-          cp "$GITHUB_WORKSPACE/ci-full.log" ./ci-full.log
-          {
-            echo "# CI log"
-            echo
-            echo "Run: $GITHUB_RUN_ID attempt $GITHUB_RUN_ATTEMPT on $GITHUB_REF_NAME @ $GITHUB_SHA"
-            echo "Gradle exit: ${gradle_exit:-unknown}"
-          } | cat - ci-full.log > ci-full.log.new && mv ci-full.log.new ci-full.log
-          git add ci-full.log
-          git commit -m "ci: log for run $GITHUB_RUN_ID" || true
-          git branch -M ci-artifacts
-          git push -f origin ci-artifacts
+          B64=$(base64 -w0 ci-report.log | head -c 900000)
+          EXISTING=$(gh api "repos/$REPO/contents/ci-report.log?ref=ci-artifacts" --jq .sha 2>/dev/null || true)
+          if [ -n "$EXISTING" ]; then
+            gh api "repos/$REPO/contents/ci-report.log" -X PUT \
+              -f message="ci: report for run $GITHUB_RUN_ID" \
+              -f content="$B64" -f branch="ci-artifacts" -f sha="$EXISTING" >/dev/null
+          else
+            gh api "repos/$REPO/contents/ci-report.log" -X PUT \
+              -f message="ci: report for run $GITHUB_RUN_ID" \
+              -f content="$B64" -f branch="ci-artifacts" >/dev/null
+          fi
 
       - name: Fail job when Gradle verification failed
         if: always()
