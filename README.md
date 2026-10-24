@@ -114,7 +114,15 @@ tracked explicitly in the operator matrix.
 
 Tags (`v*`) trigger [`.github/workflows/release.yml`](.github/workflows/release.yml),
 which builds, tests, and publishes a GitHub Release with the debug APK attached.
-The first release is `v0.1.0` (early functional build), not a 1.0.0 claim.
+The first release is
+[`v0.1.0`](https://github.com/shohanbusinessmail-cmd/callora-app/releases/tag/v0.1.0)
+(early functional build, debug-signed APK), not a 1.0.0 claim.
+
+## Engineering report
+
+The final Part 26 engineering report (in Bengali) is at
+[docs/ENGINEERING_REPORT_BN.md](docs/ENGINEERING_REPORT_BN.md), with the full
+evidence-label matrix, honest verification status and blocker list.
 
 ## Contributing
 
