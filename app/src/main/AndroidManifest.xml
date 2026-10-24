@@ -12,6 +12,18 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <!--
+      Telephony is optional at install time: Callora degrades to manual guides
+      on devices without telephony hardware (tablets, Chromebooks), so the
+      feature must not filter such devices out of the Play listing.
+    -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony.gsm"
+        android:required="false" />
+
     <application
         android:name=".CalloraApplication"
         android:allowBackup="true"
