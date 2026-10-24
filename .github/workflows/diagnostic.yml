@@ -1,0 +1,22 @@
+name: Diagnostic
+
+on:
+  push:
+    branches: ["arena/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo "runner alive: $(uname -a)"
+      - name: Tool check
+        run: |
+          which java || echo "no java"
+          which git
+          pwd
