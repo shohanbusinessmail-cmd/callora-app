@@ -54,10 +54,10 @@ class OperatorCapabilityRegistryTest {
     fun every_record_carries_evidence_and_review_date() {
         OperatorCapabilityRegistry.all().forEach { capability ->
             assertThat(capability.evidence).isNotEmpty()
-            assertThat(capability.lastReviewed).isNotBlank()
+            assertThat(capability.lastReviewed).isNotEmpty()
             capability.evidence.forEach { ev: com.callora.app.core.model.EvidenceRecord ->
                 assertThat(ev.url).startsWith("https://")
-                assertThat(ev.dateChecked).isNotBlank()
+                assertThat(ev.dateChecked).isNotEmpty()
             }
         }
     }
