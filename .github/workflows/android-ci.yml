@@ -39,47 +39,62 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
 
-      - name: Run full Gradle verification
-        id: gradle
+      - name: Build and capture full diagnostic
+        id: build
         continue-on-error: true
         run: |
           set +e
-          ./gradlew --no-daemon assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest --stacktrace 2>&1 | tee ci-full.log
-          status=${PIPESTATUS[0]}
-          echo "gradle_exit=$status" >> "$GITHUB_ENV"
-          # Compact, size-bounded report that can be read back through the GitHub API.
+          LOG=ci-diagnostic.log
+          : > "$LOG"
           {
-            echo "=== ERROR LINES ==="
-            grep -n -E "^e: |error:|FAILURE:|What went wrong|Caused by|> Task .*FAILED|Unresolved reference|Cannot access|Compilation error" ci-full.log | head -150
-            echo
-            echo "=== TAIL (300) ==="
-            tail -n 300 ci-full.log
-          } > ci-report.log
-          exit 0
+            echo "=== ENVIRONMENT ==="
+            date
+            pwd
+            ls -la
+            echo "--- java ---"
+            java -version 2>&1
+            echo "--- gradlew perms ---"
+            ls -la gradlew gradle/wrapper/
+          } >> "$LOG" 2>&1
 
-      - name: Publish report to ci-artifacts branch
+          chmod +x gradlew
+          ./gradlew --no-daemon --console=plain \
+            assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest \
+            --stacktrace >> "$LOG" 2>&1
+          echo "gradle_exit=$?" >> "$GITHUB_ENV"
+          echo "GRADLE_EXIT_CAPTURED" >> "$LOG"
+          tail -n 5 "$LOG"
+
+      - name: Publish diagnostic log to ci-artifacts branch
         if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -e
+          set +e
           REPO="$GITHUB_REPOSITORY"
           BASE_REF="arena/ce4df19c-callora-app"
+          echo "log size: $(wc -c < ci-diagnostic.log)"
           if ! gh api "repos/$REPO/git/ref/heads/ci-artifacts" >/dev/null 2>&1; then
             BASE_SHA=$(gh api "repos/$REPO/git/ref/heads/$BASE_REF" --jq .object.sha)
-            gh api "repos/$REPO/git/refs" -f ref="refs/heads/ci-artifacts" -f sha="$BASE_SHA" >/dev/null
+            gh api "repos/$REPO/git/refs" \
+              -f ref="refs/heads/ci-artifacts" -f sha="$BASE_SHA" >/dev/null
           fi
-          B64=$(base64 -w0 ci-report.log | head -c 900000)
-          EXISTING=$(gh api "repos/$REPO/contents/ci-report.log?ref=ci-artifacts" --jq .sha 2>/dev/null || true)
-          if [ -n "$EXISTING" ]; then
-            gh api "repos/$REPO/contents/ci-report.log" -X PUT \
-              -f message="ci: report for run $GITHUB_RUN_ID" \
-              -f content="$B64" -f branch="ci-artifacts" -f sha="$EXISTING" >/dev/null
-          else
-            gh api "repos/$REPO/contents/ci-report.log" -X PUT \
-              -f message="ci: report for run $GITHUB_RUN_ID" \
-              -f content="$B64" -f branch="ci-artifacts" >/dev/null
-          fi
+          B64=$(base64 -w0 ci-diagnostic.log)
+          BLOB=$(gh api "repos/$REPO/git/blobs" -f content="$B64" -f encoding=base64 --jq .sha)
+          PARENT=$(gh api "repos/$REPO/git/ref/heads/ci-artifacts" --jq .object.sha)
+          TREE=$(gh api "repos/$REPO/git/trees" \
+            -f base_tree="$PARENT" \
+            -f 'tree[][path]=ci-diagnostic.log' \
+            -f 'tree[][mode]=100644' \
+            -f 'tree[][type]=blob' \
+            -f "tree[][sha]=$BLOB" --jq .sha)
+          COMMIT=$(gh api "repos/$REPO/git/commits" \
+            -f message="ci: diagnostic for run $GITHUB_RUN_ID" \
+            -f tree="$TREE" \
+            -f 'parents[][sha]='"$PARENT" --jq .sha)
+          gh api "repos/$REPO/git/refs/heads/ci-artifacts" -X PATCH \
+            -f sha="$COMMIT" -F force=true
+          echo "publish_exit=$?"
 
       - name: Fail job when Gradle verification failed
         if: always()
