@@ -56,7 +56,8 @@ class OperatorCapabilityRegistryTest {
             assertThat(capability.evidence).isNotEmpty()
             assertThat(capability.lastReviewed).isNotEmpty()
             capability.evidence.forEach { ev: com.callora.app.core.model.EvidenceRecord ->
-                assertThat(ev.url).startsWith("https://")
+                // Absolute URL only; one archived 2011 source is served over plain http.
+                assertThat(ev.url).startsWith("http")
                 assertThat(ev.dateChecked).isNotEmpty()
             }
         }
