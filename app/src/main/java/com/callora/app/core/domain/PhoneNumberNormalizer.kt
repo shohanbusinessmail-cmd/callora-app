@@ -30,7 +30,8 @@ class PhoneNumberNormalizer(
                 return DestinationValidation.Invalid(DestinationValidation.InvalidReason.TOO_LONG)
             PhoneNumberUtil.ValidationResult.TOO_SHORT ->
                 return DestinationValidation.Invalid(DestinationValidation.InvalidReason.TOO_SHORT)
-            PhoneNumberUtil.ValidationResult.INVALID_LENGTH ->
+            PhoneNumberUtil.ValidationResult.INVALID_LENGTH,
+            PhoneNumberUtil.ValidationResult.INVALID_COUNTRY_CODE ->
                 return DestinationValidation.Invalid(DestinationValidation.InvalidReason.NOT_A_NUMBER)
             PhoneNumberUtil.ValidationResult.IS_POSSIBLE,
             PhoneNumberUtil.ValidationResult.IS_POSSIBLE_LOCAL_ONLY -> Unit
