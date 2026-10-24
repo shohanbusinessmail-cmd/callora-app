@@ -37,10 +37,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Validate Gradle wrapper
+        id: wrapper
+        continue-on-error: true
         uses: gradle/actions/wrapper-validation@v4
 
       - name: Build and capture full diagnostic
         id: build
+        if: always()
         continue-on-error: true
         run: |
           set +e
@@ -53,47 +56,52 @@ jobs:
             ls -la
             echo "--- java ---"
             java -version 2>&1
+            echo "--- wrapper validation conclusion: ${{ steps.wrapper.outcome }} ---"
             echo "--- gradlew perms ---"
             ls -la gradlew gradle/wrapper/
+            echo "=== GRADLE WRAPPER BOOTSTRAP ==="
+            chmod +x gradlew
+            ./gradlew --no-daemon --version
+            echo "wrapper_bootstrap_exit=$?"
+            echo "=== GRADLE BUILD ==="
+            ./gradlew --no-daemon --console=plain \
+              assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest \
+              --stacktrace
+            echo "gradle_exit=$?"
           } >> "$LOG" 2>&1
+          grep -E "^gradle_exit=" "$LOG" >> "$GITHUB_ENV" || echo "gradle_exit=1" >> "$GITHUB_ENV"
+          echo "--- log tail ---"
+          tail -n 10 "$LOG"
 
-          chmod +x gradlew
-          ./gradlew --no-daemon --console=plain \
-            assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest \
-            --stacktrace >> "$LOG" 2>&1
-          echo "gradle_exit=$?" >> "$GITHUB_ENV"
-          echo "GRADLE_EXIT_CAPTURED" >> "$LOG"
-          tail -n 5 "$LOG"
-
-      - name: Publish diagnostic log to ci-artifacts branch
+      - name: Publish diagnostic log
         if: always()
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set +e
-          REPO="$GITHUB_REPOSITORY"
-          BASE_REF="arena/ce4df19c-callora-app"
-          echo "log size: $(wc -c < ci-diagnostic.log)"
-          if ! gh api "repos/$REPO/git/ref/heads/ci-artifacts" >/dev/null 2>&1; then
-            BASE_SHA=$(gh api "repos/$REPO/git/ref/heads/$BASE_REF" --jq .object.sha)
-            gh api "repos/$REPO/git/refs" \
-              -f ref="refs/heads/ci-artifacts" -f sha="$BASE_SHA" >/dev/null
+          LOG="$GITHUB_WORKSPACE/ci-diagnostic.log"
+          [ -s "$LOG" ] || echo "no build log was produced" > "$LOG"
+          ART="$RUNNER_TEMP/ci-artifacts"
+          rm -rf "$ART"
+          if ! git clone --depth 1 --branch ci-artifacts \
+              "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$ART"; then
+            mkdir -p "$ART"
+            cd "$ART"
+            git init -b ci-artifacts
+            git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          else
+            cd "$ART"
           fi
-          B64=$(base64 -w0 ci-diagnostic.log)
-          BLOB=$(gh api "repos/$REPO/git/blobs" -f content="$B64" -f encoding=base64 --jq .sha)
-          PARENT=$(gh api "repos/$REPO/git/ref/heads/ci-artifacts" --jq .object.sha)
-          TREE=$(gh api "repos/$REPO/git/trees" \
-            -f base_tree="$PARENT" \
-            -f 'tree[][path]=ci-diagnostic.log' \
-            -f 'tree[][mode]=100644' \
-            -f 'tree[][type]=blob' \
-            -f "tree[][sha]=$BLOB" --jq .sha)
-          COMMIT=$(gh api "repos/$REPO/git/commits" \
-            -f message="ci: diagnostic for run $GITHUB_RUN_ID" \
-            -f tree="$TREE" \
-            -f 'parents[][sha]='"$PARENT" --jq .sha)
-          gh api "repos/$REPO/git/refs/heads/ci-artifacts" -X PATCH \
-            -f sha="$COMMIT" -F force=true
+          git config user.email "ci@callora.local"
+          git config user.name "Callora CI"
+          git checkout --orphan fresh 2>/dev/null
+          git rm -rf --cached . >/dev/null 2>&1 || true
+          find . -maxdepth 1 -mindepth 1 ! -name .git -exec rm -rf {} +
+          cp "$LOG" ./ci-diagnostic.log
+          git add ci-diagnostic.log
+          git commit -m "ci: diagnostic for run $GITHUB_RUN_ID"
+          git branch -M ci-artifacts
+          git push -f origin ci-artifacts
           echo "publish_exit=$?"
 
       - name: Fail job when Gradle verification failed
