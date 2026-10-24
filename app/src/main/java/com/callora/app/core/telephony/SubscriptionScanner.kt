@@ -37,11 +37,13 @@ class SubscriptionScanner(private val context: Context) {
      * either no SIM is present, the permission was denied, or the OEM blocked
      * access — callers distinguish via [hasReadPhoneStatePermission].
      */
+    @android.annotation.SuppressLint("MissingPermission")
     fun scan(): List<SubscriptionSnapshot> {
+        // Every permission-requiring telephony call below is reached only after
+        // this explicit runtime gate; OEM blocks are additionally wrapped in runCatching.
         if (!hasReadPhoneStatePermission()) return emptyList()
         val manager = subscriptionManager ?: return emptyList()
         val infos: List<SubscriptionInfo> = runCatching {
-            @Suppress("MissingPermission")
             manager.activeSubscriptionInfoList.orEmpty()
         }.getOrDefault(emptyList())
 
@@ -76,8 +78,10 @@ class SubscriptionScanner(private val context: Context) {
         return runCatching { base.createForSubscriptionId(subscriptionId) }.getOrNull()
     }
 
-    private fun hasNumber(info: SubscriptionInfo): Boolean =
-        runCatching { !info.number.isNullOrBlank() }.getOrDefault(false)
+    private fun hasNumber(info: SubscriptionInfo): Boolean {
+        if (!hasReadPhoneStatePermission()) return false
+        return runCatching { !info.number.isNullOrBlank() }.getOrDefault(false)
+    }
 
     private fun mapSimState(state: Int?): SimState = when (state) {
         null -> SimState.UNKNOWN

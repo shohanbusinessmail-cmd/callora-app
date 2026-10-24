@@ -1,7 +1,9 @@
 package com.callora.app.core.telephony.backend
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.telecom.TelecomManager
 import androidx.core.content.ContextCompat
@@ -111,7 +113,15 @@ class MmiIntentBackend(private val appContext: Context) : CallForwardingBackend 
      */
     fun launch(handoff: MmiHandOff): Boolean {
         val uri = Uri.fromParts("tel", handoff.mmi, null)
-        val action = if (handoff.useActionCall) Intent.ACTION_CALL else Intent.ACTION_DIAL
+        val callPhoneGranted = ContextCompat.checkSelfPermission(
+            appContext, Manifest.permission.CALL_PHONE,
+        ) == PackageManager.PERMISSION_GRANTED
+        // ACTION_CALL only with an explicit live grant; otherwise pre-fill the dialer.
+        val action = if (handoff.useActionCall && callPhoneGranted) {
+            Intent.ACTION_CALL
+        } else {
+            Intent.ACTION_DIAL
+        }
         val intent = Intent(action, uri).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
             if (handoff.phoneAccountResolved) {
@@ -127,6 +137,12 @@ class MmiIntentBackend(private val appContext: Context) : CallForwardingBackend 
     }
 
     private fun resolvePhoneAccount(subscriptionId: Int): android.telecom.PhoneAccountHandle? {
+        if (ContextCompat.checkSelfPermission(
+                appContext, Manifest.permission.READ_PHONE_STATE,
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return null
+        }
         val telecom = ContextCompat.getSystemService(appContext, TelecomManager::class.java) ?: return null
         val handles = runCatching { telecom.callCapablePhoneAccounts }.getOrDefault(emptyList())
         return handles.firstOrNull { handle ->
