@@ -27,9 +27,11 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
+      # The ubuntu-24.04 hosted image already provides ANDROID_HOME with
+      # cmdline-tools, platform-tools and a pre-selected platform; the
+      # android-actions/setup-android action is unnecessary and fails on this
+      # image. Licenses on the hosted image are pre-accepted, kept here as a
+      # defensive no-op for SDK component downloads.
       - name: Accept Android licenses
         run: yes | sdkmanager --licenses >/dev/null || true
 
